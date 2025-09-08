@@ -1,8 +1,7 @@
-const mongoose = require("mongoose");
-const argon2 = require("argon2");
-const dbConnect = require("./utils/dbConnect");
-const User = require("./models/User");
-
+import mongoose from "mongoose";
+import argon2 from "argon2";
+import dbConnect from "./dbConnect.js";
+import User from "../models/User.js";
 
 async function createAdmin() {
   try {
@@ -14,7 +13,7 @@ async function createAdmin() {
 
     const existing = await User.findOne({ email });
     if (existing) {
-      console.log("Admin already exists!");
+      console.log("⚠️ Admin already exists!");
       return mongoose.connection.close();
     }
 
